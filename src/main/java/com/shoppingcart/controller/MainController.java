@@ -51,13 +51,16 @@ public class MainController {
 	@RequestMapping({ "/productList" })
 	public String getAllProductInfos(Model model, @RequestParam(value = "name", defaultValue = "") String likeName,
 			@RequestParam(value = "page", defaultValue = "1") int page) {//productList?page=2
+		System.out.println("Yen fix");
 		final int maxResult = 5;
 		PaginationResult<ProductInfo> productInfos = productDAO.getAllProductInfos(page, maxResult, 
 				likeName);
 
 		model.addAttribute("paginationProductInfos", productInfos);
 		return "productList";
+		
 	}
+	
 	
 	@RequestMapping(value = { "/productImage" }, method = RequestMethod.GET)
 	public void productImage(HttpServletRequest request, HttpServletResponse response, Model model,
